@@ -46,3 +46,74 @@ function cf(form){
     }
     resultElement.innerHTML = "Wynik: "+result;
 }
+/////////////////////////////////////////
+function palindrom(txt) { /// zad2
+    let str = "";
+    for (let x = txt.length - 1; x >= 0; x--) {
+      str += txt[x];
+    }
+  
+    if (txt === str) {
+      return true;
+    } else {
+      return false;
+    }
+}
+////
+function zad3(tab) {
+    if (tab[0] === 'number') {
+      let a = tab[0];
+      for (let x = tab.length - 1; x >= 0; x--) {
+        if (tab[x] > a) a = tab[x];
+      }
+      return a + " - liczba";
+    } else if (typeof tab[0] === "string") { // jeżeli string
+      let tab2 = "";
+      let tab1 = tab[0];
+      for (let x = tab.length - 1; x >= 0; x--) {
+        if (tab[x].length > tab1.length) {
+          tab2 = tab1;
+          tab1 = tab[x];
+        } else if (tab[x].length > tab2.length) {
+          tab2 = tab[x];
+        }
+      }
+      return tab2 + " - string";
+    } else return "error";
+}
+////
+function zad4(txt1, txt2){
+  let l1= txt1.split("").map(c => c.charCodeAt(0));
+  let l2= txt2.split("").map(c => c.charCodeAt(0));
+
+  let w1 = 1;
+  for (let i = 0; i < l1.length; i++) {
+    w1 *= l1[i];
+  }
+  let w2 = 1;
+  for (let i = 0; i < l2.length; i++) {
+    w2 *= l2[i];
+  }
+
+  if(w1 == w2) return true;
+  else return false;
+
+}
+//
+function z2(form){
+    let txt = form.txt.value.toLowerCase();
+    let out = "nie jest";
+    if(palindrom(txt)) out= "jest";
+    document.getElementById("z2").innerHTML = out;
+}
+function z3(form){
+    let tab = form.txt.value.toLowerCase().split(",");
+    document.getElementById("z3").innerHTML = zad3(tab);
+}
+function z4(form){
+    let txt1 = form.txt1.value.toLowerCase();
+    let txt2 = form.txt2.value.toLowerCase();
+    let out = "nie jest";
+    if(zad4(txt1,txt2)) out= "jest";
+    document.getElementById("z4").innerHTML = out;
+}

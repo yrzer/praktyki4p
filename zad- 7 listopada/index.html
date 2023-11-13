@@ -17,17 +17,39 @@
     
     <div>Prosty Kalkulator<br>
         <form name="calculator-form" action="" method="get">
-            <input type="number" id="num1" placeholder="Liczba 1" >
+            <input type="number" id="num1" >
             <select id="operator" >
                 <option value="dod">Dodawanie</option>
                 <option value="odj">Odejmowanie</option>
                 <option value="raz">Mnożenie</option>
                 <option value="prz">Dzielenie</option>
             </select>
-            <input type="number" id="num2" placeholder="Liczba 2" >
+            <input type="number" id="num2" >
             <input type="button" name="btn_reverse" value="Click" onClick="cf(this.form)">
         </form>
         <div id="cf"></div>
+    </div>
+    <div>palindromem<br>
+        <form name="palindromem-form" action="" method="get">
+            text:<input type="text" id="txt">
+            <input type="button" name="btn_palindromem" value="Click" onClick="z2(this.form)">
+        </form>
+        <div id="z2"></div>
+    </div>
+    <div>tablicy<br>
+        <form name="tablicy-form" action="" method="get">
+            tablica czyli text po przecinkach:<input type="text" id="txt"><br>
+            <input type="button" name="btn_tablicy" value="Click" onClick="z3(this.form)">
+        </form>
+        <div id="z3"></div>
+    </div>
+    <div>anagramem<br>
+        <form name="anagramem-form" action="" method="get">
+            txt1:<input type="text" id="txt1"><br>
+            txt2:<input type="text" id="txt2"><br>
+            <input type="button" name="btn_anagramem" value="Click" onClick="z4(this.form)">
+        </form>
+        <div id="z4"></div>
     </div>
 
     
