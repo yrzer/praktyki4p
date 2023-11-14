@@ -60,12 +60,30 @@ function palindrom(txt) { /// zad2
     }
 }
 ////
+function isNumber(string) {
+  const parsedNumber = parseInt(string);
+  return parsedNumber !== NaN && !isNaN(parsedNumber);
+}
 function zad3(tab) {
-    if (tab[0] === 'number') {
-      let a = tab[0];
-      for (let x = tab.length - 1; x >= 0; x--) {
-        if (tab[x] > a) a = tab[x];
-      }
+
+    if (isNumber(tab[0])) {
+      
+        let a = parseInt(tab[0]);
+        let b = parseInt(tab[0]);
+        for (let x = tab.length - 1; x >= 0; x--) {
+          let tabx = parseInt( tab[x]);
+          if (tabx > a) {
+              b = a;
+              a = tabx;
+          }
+          else if (tabx == a){
+              //pass
+          }
+          else if (tabx > b) {
+              b = tabx;
+          }
+        }
+      
       return a + " - liczba";
     } else if (typeof tab[0] === "string") { // jeżeli string
       let tab2 = "";
