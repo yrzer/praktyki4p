@@ -11,57 +11,34 @@ const books = [
 // Zad6. (2 pkt)
 // Stwórz kompozycję która na tablicy „books” zlicza ilość liter w tytule (title) nie licząc spacji,
 // gdzie strony (pages) są parzyste oraz genre kończy się na literkę „y”. 
-const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
+const compose = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x)
 
 const strParzyste = (list) =>  list.filter( (book) => book.pages % 2 == 0);
-const generY = (list) =>  list.filter( (book) => book.genre[book.genre.length - 1] == "y");
-const bez_spacja = (list) => list.map( (list) => list.title.replace(/\s/g,"") );
-const litery_liczba = (list) => list.map( (list) => list.title.length);
+const generY = (list) =>  list.filter( (book) => book.genre[book.genre.length - 1] == 'y');
+const bez_spacja = (list) => list.map( (book) => book.title.replace(/\s/g,'') ); // zwraca tylko title ???
+const litery_liczba = (list) => list.map( (book) => book.length);
+
+// const zad6_compose = compose(litery_liczba, bez_spacja, generY, strParzyste);
 const zad6_compose = compose(strParzyste,generY,bez_spacja,litery_liczba);
-console.log(strParzyste(generY(bez_spacja(books))));
+console.log(zad6_compose(books));
 
 
-
-    // const zad6 = (tab)=> { // tablica
-    //     const r = tab.map((l) =>{ // line
-    //         if(l.pages%2 == 0 && l.genre[l.genre.length - 1]=="y"){
-    //             let sum=0;
-    //             for(x=0;x<l.title.length;x++)  if(l.title[x] != " ") sum++;  
-    //             return sum;
-    //         } else return null;
-    //     });
-    //     return r.reduce((a, x) => a + x);
-    // };
-    // console.log(zad6(books));
 // Zad7. (2 pkt)
 // Stwórz kompozycję która na tablicy „books” zlicza ilość pozytywnych ocen (rating > 5), gdzie
 // strony (pages) są liczbą nieparzystą oraz tytuł (title) zawiera liczbę.
 
-const zad7 = (tab)=> {
-    let sum=0;
-    tab.map((l) =>{ // line
-        if(l.pages%2 != 0 && l.rating > 5){
-            let t= false;
-            for(x=0;x<l.title.length;x++) {
-                if(parseInt( l.title[x] ) != NaN) t=true; 
-            }
-            if(t) sum++;
-        };
-    });
-    return sum;
-}
-console.log(zad7(books));
+const strNieParzyste = (list) =>  list.filter( (book) => book.pages % 2 != 0);
+const rating_pozytywne = (list) =>  list.filter( (book) => book.rating > 5);
+const maLiczbe = (list) => list.filter( (book) => /\d/.test(book.title) );
+const ile = (lista) => lista.length;
+const zad7_compose = compose(strNieParzyste, rating_pozytywne, maLiczbe, ile);
+console.log(zad7_compose(books));
+
 // Zad8. (2 pkt)
 // Stwórz kompozycję która na tablicy „books” zwraca drugi najdłuższy tytuł (title).
 
-const zad8 = (tab)=> {
-    let n1="";
-    let n2="";
-    tab.map((l) =>{ // line
-        x = l.title; y = x.length
-        if(n1.length<y) n1 = x;
-        else if (n2.length<y) n2 = x;
-    });
-    return n2;
-}
-console.log(zad8(books));
+// const usun_mniejszy = (lista) => 
+const s_po_d = (list) => list.sort((a, b) => a.title.length - b.title.length) 
+const n_d_2 = (list) => list.reverse()[1].title;
+const zad8_compose = compose(s_po_d,n_d_2);
+console.log(zad8_compose(books));
