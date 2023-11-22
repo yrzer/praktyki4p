@@ -13,13 +13,13 @@ const books = [
 // gdzie strony (pages) są parzyste oraz genre kończy się na literkę „y”. 
 const compose = (...fns) => (x) => fns.reduce((acc, fn) => fn(acc), x)
 
-const strParzyste = (list) =>  list.filter( (book) => book.pages % 2 == 0);
-const generY = (list) =>  list.filter( (book) => book.genre[book.genre.length - 1] == 'y');
-const bez_spacja = (list) => list.map( (book) => book.title.replace(/\s/g,'') ); // zwraca tylko title ???
-const litery_liczba = (list) => list.map( (book) => book.length);
+const evenPages = (list) =>  list.filter( (book) => book.pages % 2 == 0);
+const generEndsY = (list) =>  list.filter( (book) => book.genre[book.genre.length - 1] == 'y');
+const withoutSpaces = (list) => list.map( (book) => book.title.replace(/\s/g,'') ); // zwraca tylko title ???
+const stringLength = (list) => list.map( (book) => book.length);
 
 // const zad6_compose = compose(litery_liczba, bez_spacja, generY, strParzyste);
-const zad6_compose = compose(strParzyste,generY,bez_spacja,litery_liczba);
+const zad6_compose = compose(evenPages,generEndsY,withoutSpaces,stringLength);
 console.log(zad6_compose(books));
 
 
@@ -27,18 +27,18 @@ console.log(zad6_compose(books));
 // Stwórz kompozycję która na tablicy „books” zlicza ilość pozytywnych ocen (rating > 5), gdzie
 // strony (pages) są liczbą nieparzystą oraz tytuł (title) zawiera liczbę.
 
-const strNieParzyste = (list) =>  list.filter( (book) => book.pages % 2 != 0);
-const rating_pozytywne = (list) =>  list.filter( (book) => book.rating > 5);
-const maLiczbe = (list) => list.filter( (book) => /\d/.test(book.title) );
-const ile = (lista) => lista.length;
-const zad7_compose = compose(strNieParzyste, rating_pozytywne, maLiczbe, ile);
+const oddPages = (list) =>  list.filter( (book) => book.pages % 2 != 0);
+const positiveRating = (list) =>  list.filter( (book) => book.rating > 5);
+const hasNumber = (list) => list.filter( (book) => /\d/.test(book.title) );
+const count = (lista) => lista.length;
+const zad7_compose = compose(oddPages, positiveRating, hasNumber, count);
 console.log(zad7_compose(books));
 
 // Zad8. (2 pkt)
 // Stwórz kompozycję która na tablicy „books” zwraca drugi najdłuższy tytuł (title).
 
 // const usun_mniejszy = (lista) => 
-const s_po_d = (list) => list.sort((a, b) => a.title.length - b.title.length) 
-const n_d_2 = (list) => list.reverse()[1].title;
-const zad8_compose = compose(s_po_d,n_d_2);
+const titleLengthSort = (list) => list.sort((a, b) => a.title.length - b.title.length) ;
+const secondLengthTitle = (list) => list.reverse()[1].title;
+const zad8_compose = compose(titleLengthSort,secondLengthTitle);
 console.log(zad8_compose(books));
