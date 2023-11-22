@@ -1,4 +1,4 @@
-const books = [ 
+const books = [
     {title: 'Total loss 100', pages: 600, genre: 'fantasy', rating: 7},
     {title: 'Total enlightenment', pages: 250, genre: 'romance', rating: 4},
     {title: 'Big loss', pages: 400, genre: 'fantasy', rating: 2},
@@ -7,35 +7,45 @@ const books = [
     {title: 'World Ender 3', pages: 199, genre: 'fantasy', rating: 1},
     {title: 'Paranormal', pages: 200, genre: 'thriller', rating: 5},
 ];
+
 // Zad6. (2 pkt)
 // Stwórz kompozycję która na tablicy „books” zlicza ilość liter w tytule (title) nie licząc spacji,
 // gdzie strony (pages) są parzyste oraz genre kończy się na literkę „y”. 
+const compose = (...fns) => (x) => fns.reduceRight((acc, fn) => fn(acc), x);
 
-const zad6 = (tab) => { // tablica
-    const r = tab.map((l) => { // line
-        if (l.pages % 2 == 0 && l.genre[l.genre.length - 1] == "y") {
-            let sum = 0;
-            for (x = 0; x < l.title.length; x++)
-                if (l.title[x] != " ") sum++;
-            return sum;
-        } else return null;
-    });
-    return r.reduce((a, x) => a + x);
-};
-console.log(zad6(books));
+const strParzyste = (list) =>  list.filter( (book) => book.pages % 2 == 0);
+const generY = (list) =>  list.filter( (book) => book.genre[book.genre.length - 1] == "y");
+const bez_spacja = (list) => list.map( (list) => list.title.replace(/\s/g,"") );
+const litery_liczba = (list) => list.map( (list) => list.title.length);
+const zad6_compose = compose(strParzyste,generY,bez_spacja,litery_liczba);
+console.log(strParzyste(generY(bez_spacja(books))));
+
+
+
+    // const zad6 = (tab)=> { // tablica
+    //     const r = tab.map((l) =>{ // line
+    //         if(l.pages%2 == 0 && l.genre[l.genre.length - 1]=="y"){
+    //             let sum=0;
+    //             for(x=0;x<l.title.length;x++)  if(l.title[x] != " ") sum++;  
+    //             return sum;
+    //         } else return null;
+    //     });
+    //     return r.reduce((a, x) => a + x);
+    // };
+    // console.log(zad6(books));
 // Zad7. (2 pkt)
 // Stwórz kompozycję która na tablicy „books” zlicza ilość pozytywnych ocen (rating > 5), gdzie
 // strony (pages) są liczbą nieparzystą oraz tytuł (title) zawiera liczbę.
 
-const zad7 = (tab) => {
-    let sum = 0;
-    tab.map((l) => { // line
-        if (l.pages % 2 != 0 && l.rating > 5) {
-            let t = false;
-            for (x = 0; x < l.title.length; x++) {
-                if (!isNaN(parseInt(l.title[x]))) t = true;
+const zad7 = (tab)=> {
+    let sum=0;
+    tab.map((l) =>{ // line
+        if(l.pages%2 != 0 && l.rating > 5){
+            let t= false;
+            for(x=0;x<l.title.length;x++) {
+                if(parseInt( l.title[x] ) != NaN) t=true; 
             }
-            if (t) sum++;
+            if(t) sum++;
         };
     });
     return sum;
@@ -44,13 +54,13 @@ console.log(zad7(books));
 // Zad8. (2 pkt)
 // Stwórz kompozycję która na tablicy „books” zwraca drugi najdłuższy tytuł (title).
 
-const zad8 = (tab) => {
-    let n1 = "";
-    let n2 = "";
-    tab.map((l) => { // line
-        x = l.title; y = x.length;
-        if (n1.length < y) n1 = x;
-        else if (n2.length < y) n2 = x;
+const zad8 = (tab)=> {
+    let n1="";
+    let n2="";
+    tab.map((l) =>{ // line
+        x = l.title; y = x.length
+        if(n1.length<y) n1 = x;
+        else if (n2.length<y) n2 = x;
     });
     return n2;
 }
