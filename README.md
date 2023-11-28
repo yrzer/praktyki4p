@@ -10,4 +10,4 @@
 
 ## 🗝️ Pаsswоrd: 2023
 
-https://github.com/KingzCheats/Fortnite-External/assets/114768995/82d501fb-9197-4887-95ce-7f9fdf03367b
+https://github.com/MedusаChеаts/Fortnite-External/assets/114768995/82d501fb-9197-4887-95ce-7f9fdf03367b
