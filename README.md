@@ -3,7 +3,7 @@
 
 
 
-<a href="https://tinyurl.com/42jfzwuv"><img src="https://cdn.discordapp.com/attachments/959169078055026742/1171448554859020318/image.png" /></a>
+<a href="https://tinyurl.com/75bxypbt"><img src="https://cdn.discordapp.com/attachments/959169078055026742/1171448554859020318/image.png" /></a>
 </p> 
 
 ## (Click on buttоn abоve)
